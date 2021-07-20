@@ -7,6 +7,9 @@ board = [' ', ' ', ' ',
          ' ', ' ', ' ']
 
 current_player = "Player_1"
+
+game_on = True
+
 player_1_mark, player_2_mark = ("O","X")
 
 def display_board():
@@ -36,30 +39,39 @@ def ask_player_2_input():
     board[position] = "O"
 
 def check_win():
-    if board[1] == board[2] == board[3] == player_1_mark or board[1] == board[2] == board[3] == player_2_mark:
+    global winner
+    # Check rows
+    if board[0] == board[1] == board[2] != ' ':
+        winner = board[0]
         return True
-    if board[4] == board[5] == board[6] == player_1_mark or board[4] == board[5] == board[6] == player_2_mark:
+    if board[3] == board[4] == board[5] != ' ':
+        winner = board[3]
         return True
-    if board[7] == board[8] == board[9] == player_1_mark or board[7] == board[8] == board[9] == player_2_mark:
+    if board[6] == board[7] == board[8] != ' ':
+        winner = board[6]
         return True
-    if board[1] == board[4] == board[7] == player_1_mark or board[1] == board[4] == board[7] == player_2_mark:
+    # Check columns
+    if board[0] == board[3] == board[6] != ' ':
+        winner = board[0]
         return True
-    if board[2] == board[5] == board[8] == player_1_mark or board[2] == board[5] == board[8] == player_2_mark:
+    if board[1] == board[4] == board[7] != ' ':
+        winner = board[1]
         return True
-    if board[3] == board[6] == board[9] == player_1_mark or board[3] == board[6] == board[9] == player_2_mark:
+    if board[2] == board[5] == board[8] != ' ':
+        winner = board[2]
         return True
-    if board[1] == board[5] == board[9] == player_1_mark or board[1] == board[5] == board[9] == player_2_mark:
+    # Check diagonals
+    if board[0] == board[4] == board[8] != ' ':
+        winner = board[0]
         return True
-    if board[3] == board[5] == board[7] == player_1_mark or board[3] == board[5] == board[7] == player_2_mark:
+    if board[2] == board[4] == board[6] != ' ':
+        winner = board[2]
         return True
-    else:
-        return False
+    return False
 
 def check_tie():
-    if " " not in board:
+    if ' ' not in board:
         return True
-    else:
-        return False
 
 
 def start_game():
@@ -79,18 +91,18 @@ def start_game():
 
     while game_on:
 
-        display_board(board)
+        display_board()
 
         if current_player == 'Player_1':
             ask_player_1_input()
             if check_win() == True:
-                display_board(board)
+                display_board()
                 print(current_player+" wins!")
                 game_on = False
 
             else:
                 if check_tie() == True:
-                    display_board(board)
+                    display_board()
                     print("Tie!")
                     game_on = False
 
@@ -100,13 +112,13 @@ def start_game():
         elif current_player == 'Player_2':
             ask_player_2_input()
             if check_win() == True:
-                display_board(board)
+                display_board()
                 print(current_player + " wins!")
                 game_on = False
 
             else:
                 if check_tie() == True:
-                    display_board(board)
+                    display_board()
                     print("Tie!")
                     game_on = False
 
