@@ -14,6 +14,7 @@ WINNER = " "
 
 
 def display_board():
+    """Display board"""
     print("Game board      Position Guide")
     print("  " + BOARD[0] + "|" + BOARD[1] + "|" + BOARD[2] + "             1|2|3")
     print("  -----             -----")
@@ -23,6 +24,7 @@ def display_board():
 
 
 def handle_turn():
+    """Ask for player's input and place the mark on the board"""
     print(CURRENT_PLAYER + "'s turn!")
     position = int(input("Choose a position from 1-9: "))
 
@@ -44,6 +46,7 @@ def handle_turn():
 
 
 def check_if_win():
+    """Check if there is a win"""
     global WINNER
     # Check rows
     if BOARD[0] == BOARD[1] == BOARD[2] != ' ':
@@ -76,11 +79,13 @@ def check_if_win():
 
 
 def check_if_tie():
+    """Check if there is a tie"""
     if ' ' not in BOARD:
         return True
 
 
 def flip_player():
+    """Change between players when there is no win or tie"""
     global CURRENT_PLAYER
 
     if CURRENT_PLAYER == 'X':
