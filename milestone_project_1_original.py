@@ -6,11 +6,12 @@ board = [' ', ' ', ' ',
          ' ', ' ', ' ',
          ' ', ' ', ' ']
 
-current_player = "Player_1"
+current_player = "X"
 
 game_on = True
 
-player_1_mark, player_2_mark = ("O","X")
+winner = " "
+
 
 def display_board():
     print("Game Board      Position Guide")
@@ -20,23 +21,27 @@ def display_board():
     print("  -----             -----")
     print("  " + board[6] + "|" + board[7] + "|" + board[8] + "             7|8|9")
 
-def ask_player_1_input():
-    print("Player_1's turn, your mark is 'X'")
-    position = int(input("Please choose a number from 1-9: "))
 
-    while position not in range(1,10) or board[position] == "X" or board[position] == "O":
-        position = int(input("Invalid number or placement, please try again: "))
+def handle_turn():
+    print(current_player + "'s turn!")
+    position = int(input("Choose a position from 1-9: "))
 
-    board[position] = "X"
+    position_valid = False
+    while not position_valid:
+        while position not in range(1, 10):
+            position = int(input("Invalid number, please try again: "))
 
-def ask_player_2_input():
-    print("Player_2's turn, your mark is 'O'")
-    position = int(input("Please choose a number from 1-9: "))
+        position = int(position) - 1
 
-    while position not in range(1,10) or board[position] == "X" or board[position] == "O":
-        position = int(input("Invalid number or placement, please try again: "))
+        if board[position] == ' ':
+            position_valid = True
+        else:
+            print("Position taken! Choose another one.")
 
-    board[position] = "O"
+    board[position] = current_player
+
+    display_board()
+
 
 def check_win():
     global winner
@@ -69,60 +74,35 @@ def check_win():
         return True
     return False
 
+
 def check_tie():
     if ' ' not in board:
         return True
 
 
-def start_game():
+def flip_player():
+    global current_player
 
-    current_player = 'Player_1'
-    play_game = ''
+    if current_player == 'X':
+        current_player = 'O'
 
-    print("Welcome to the Tic-Tac-Toe game!")
-    print("How to play? : Enter numbers from 1-9 to place a mark on the 3x3 board!")
-    print("How to win?  : The first player to get 3 mark in a line wins!")
-    print(" ")
+    elif current_player == 'O':
+        current_player = 'X'
 
-    while not play_game == 'YES':
-        play_game = input('Enter "YES" to start: ').upper()
-        if play_game == 'YES':
-            game_on = True
+
+if __name__ == "__main__":
+    display_board()
 
     while game_on:
+        handle_turn()
 
-        display_board()
+        if check_if_win():
+            game_on = False
+            print(winner + " won.")
 
-        if current_player == 'Player_1':
-            ask_player_1_input()
-            if check_win() == True:
-                display_board()
-                print(current_player+" wins!")
-                game_on = False
+        elif check_if_tie():
+            game_on = False
+            print("Tie.")
 
-            else:
-                if check_tie() == True:
-                    display_board()
-                    print("Tie!")
-                    game_on = False
-
-                else:
-                    current_player = 'Player_2'
-
-        elif current_player == 'Player_2':
-            ask_player_2_input()
-            if check_win() == True:
-                display_board()
-                print(current_player + " wins!")
-                game_on = False
-
-            else:
-                if check_tie() == True:
-                    display_board()
-                    print("Tie!")
-                    game_on = False
-
-                else:
-                    current_player = 'Player_1'
-
-start_game()
+        else:
+            flip_player()
