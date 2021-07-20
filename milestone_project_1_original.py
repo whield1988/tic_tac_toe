@@ -2,28 +2,28 @@
 A simple Tic-Tac-Toe game.
 """
 
-board = [' ', ' ', ' ',
+BOARD = [' ', ' ', ' ',
          ' ', ' ', ' ',
          ' ', ' ', ' ']
 
-current_player = "X"
+CURRENT_PLAYER = "X"
 
-game_on = True
+GAME_ON = True
 
-winner = " "
+WINNER = " "
 
 
 def display_board():
-    print("Game Board      Position Guide")
-    print("  " + board[0] + "|" + board[1] + "|" + board[2] + "             1|2|3")
+    print("Game board      Position Guide")
+    print("  " + BOARD[0] + "|" + BOARD[1] + "|" + BOARD[2] + "             1|2|3")
     print("  -----             -----")
-    print("  " + board[3] + "|" + board[4] + "|" + board[5] + "             4|5|6")
+    print("  " + BOARD[3] + "|" + BOARD[4] + "|" + BOARD[5] + "             4|5|6")
     print("  -----             -----")
-    print("  " + board[6] + "|" + board[7] + "|" + board[8] + "             7|8|9")
+    print("  " + BOARD[6] + "|" + BOARD[7] + "|" + BOARD[8] + "             7|8|9")
 
 
 def handle_turn():
-    print(current_player + "'s turn!")
+    print(CURRENT_PLAYER + "'s turn!")
     position = int(input("Choose a position from 1-9: "))
 
     position_valid = False
@@ -33,75 +33,75 @@ def handle_turn():
 
         position = int(position) - 1
 
-        if board[position] == ' ':
+        if BOARD[position] == ' ':
             position_valid = True
         else:
             print("Position taken! Choose another one.")
 
-    board[position] = current_player
+    BOARD[position] = CURRENT_PLAYER
 
     display_board()
 
 
-def check_win():
-    global winner
+def check_if_win():
+    global WINNER
     # Check rows
-    if board[0] == board[1] == board[2] != ' ':
-        winner = board[0]
+    if BOARD[0] == BOARD[1] == BOARD[2] != ' ':
+        WINNER = BOARD[0]
         return True
-    if board[3] == board[4] == board[5] != ' ':
-        winner = board[3]
+    if BOARD[3] == BOARD[4] == BOARD[5] != ' ':
+        WINNER = BOARD[3]
         return True
-    if board[6] == board[7] == board[8] != ' ':
-        winner = board[6]
+    if BOARD[6] == BOARD[7] == BOARD[8] != ' ':
+        WINNER = BOARD[6]
         return True
     # Check columns
-    if board[0] == board[3] == board[6] != ' ':
-        winner = board[0]
+    if BOARD[0] == BOARD[3] == BOARD[6] != ' ':
+        WINNER = BOARD[0]
         return True
-    if board[1] == board[4] == board[7] != ' ':
-        winner = board[1]
+    if BOARD[1] == BOARD[4] == BOARD[7] != ' ':
+        WINNER = BOARD[1]
         return True
-    if board[2] == board[5] == board[8] != ' ':
-        winner = board[2]
+    if BOARD[2] == BOARD[5] == BOARD[8] != ' ':
+        WINNER = BOARD[2]
         return True
     # Check diagonals
-    if board[0] == board[4] == board[8] != ' ':
-        winner = board[0]
+    if BOARD[0] == BOARD[4] == BOARD[8] != ' ':
+        WINNER = BOARD[0]
         return True
-    if board[2] == board[4] == board[6] != ' ':
-        winner = board[2]
+    if BOARD[2] == BOARD[4] == BOARD[6] != ' ':
+        WINNER = BOARD[2]
         return True
     return False
 
 
-def check_tie():
-    if ' ' not in board:
+def check_if_tie():
+    if ' ' not in BOARD:
         return True
 
 
 def flip_player():
-    global current_player
+    global CURRENT_PLAYER
 
-    if current_player == 'X':
-        current_player = 'O'
+    if CURRENT_PLAYER == 'X':
+        CURRENT_PLAYER = 'O'
 
-    elif current_player == 'O':
-        current_player = 'X'
+    elif CURRENT_PLAYER == 'O':
+        CURRENT_PLAYER = 'X'
 
 
 if __name__ == "__main__":
     display_board()
 
-    while game_on:
+    while GAME_ON:
         handle_turn()
 
         if check_if_win():
-            game_on = False
-            print(winner + " won.")
+            GAME_ON = False
+            print(WINNER + " won.")
 
         elif check_if_tie():
-            game_on = False
+            GAME_ON = False
             print("Tie.")
 
         else:
