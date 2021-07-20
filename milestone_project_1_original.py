@@ -2,17 +2,20 @@
 A simple Tic-Tac-Toe game.
 """
 
-board = ['-',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+board = [' ', ' ', ' ',
+         ' ', ' ', ' ',
+         ' ', ' ', ' ']
+
 current_player = "Player_1"
 player_1_mark, player_2_mark = ("O","X")
 
-def display_board(board):
+def display_board():
     print("Game Board      Position Guide")
-    print("  " + board[1] + "|" + board[2] + "|" + board[3] + "             1|2|3")
+    print("  " + board[0] + "|" + board[1] + "|" + board[2] + "             1|2|3")
     print("  -----             -----")
-    print("  " + board[4] + "|" + board[5] + "|" + board[6] + "             4|5|6")
+    print("  " + board[3] + "|" + board[4] + "|" + board[5] + "             4|5|6")
     print("  -----             -----")
-    print("  " + board[7] + "|" + board[8] + "|" + board[9] + "             7|8|9")
+    print("  " + board[6] + "|" + board[7] + "|" + board[8] + "             7|8|9")
 
 def ask_player_1_input():
     print("Player_1's turn, your mark is 'X'")
