@@ -1,10 +1,5 @@
 """
-1. Display a board
-2. User can input 1-9
-3. Check if the user input is taken, else, ask for another number
-4. Add the mark to the board
-5. Check if the user wins or tie, else, next player's turn
-6. Play again?
+A simple Tic-Tac-Toe game.
 """
 
 board = ['-',' ',' ',' ',' ',' ',' ',' ',' ',' ']
@@ -62,9 +57,6 @@ def check_tie():
         return True
     else:
         return False
-
-def replay():
-    pass
 
 
 def start_game():
