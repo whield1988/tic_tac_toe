@@ -29,16 +29,17 @@ def handle_turn():
     position = int(input("Choose a position from 1-9: "))
 
     position_valid = False
+
     while not position_valid:
-        while position not in range(1, 10):
-            position = int(input("Invalid number, please try again: "))
+        while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+            position = input("Choose a number from 1-9: ")
 
         position = int(position) - 1
 
         if BOARD[position] == ' ':
             position_valid = True
         else:
-            print("Position taken! Choose another one.")
+            print("Position taken! Please choose another number.")
 
     BOARD[position] = CURRENT_PLAYER
 
