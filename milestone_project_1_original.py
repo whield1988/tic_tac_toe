@@ -2,16 +2,6 @@
 A simple Tic-Tac-Toe game.
 """
 
-BOARD = [' ', ' ', ' ',
-         ' ', ' ', ' ',
-         ' ', ' ', ' ']
-
-CURRENT_PLAYER = "X"
-
-GAME_ON = True
-
-WINNER = " "
-
 
 def display_board():
     """Display board"""
@@ -26,7 +16,7 @@ def display_board():
 def handle_turn():
     """Ask for player's input and place the mark on the board"""
     print(CURRENT_PLAYER + "'s turn!")
-    position = int(input("Choose a position from 1-9: "))
+    position = input("Choose a number from 1-9: ")
 
     position_valid = False
 
@@ -97,6 +87,17 @@ def flip_player():
 
 
 if __name__ == "__main__":
+
+    BOARD = [' ', ' ', ' ',
+             ' ', ' ', ' ',
+             ' ', ' ', ' ']
+
+    CURRENT_PLAYER = "X"
+
+    GAME_ON = True
+
+    WINNER = " "
+
     display_board()
 
     while GAME_ON:
