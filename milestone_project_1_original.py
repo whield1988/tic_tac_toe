@@ -43,30 +43,31 @@ def check_if_win():
     if BOARD[0] == BOARD[1] == BOARD[2] != ' ':
         WINNER = BOARD[0]
         return True
-    if BOARD[3] == BOARD[4] == BOARD[5] != ' ':
+    elif BOARD[3] == BOARD[4] == BOARD[5] != ' ':
         WINNER = BOARD[3]
         return True
-    if BOARD[6] == BOARD[7] == BOARD[8] != ' ':
+    elif BOARD[6] == BOARD[7] == BOARD[8] != ' ':
         WINNER = BOARD[6]
         return True
     # Check columns
-    if BOARD[0] == BOARD[3] == BOARD[6] != ' ':
+    elif BOARD[0] == BOARD[3] == BOARD[6] != ' ':
         WINNER = BOARD[0]
         return True
-    if BOARD[1] == BOARD[4] == BOARD[7] != ' ':
+    elif BOARD[1] == BOARD[4] == BOARD[7] != ' ':
         WINNER = BOARD[1]
         return True
-    if BOARD[2] == BOARD[5] == BOARD[8] != ' ':
+    elif BOARD[2] == BOARD[5] == BOARD[8] != ' ':
         WINNER = BOARD[2]
         return True
     # Check diagonals
-    if BOARD[0] == BOARD[4] == BOARD[8] != ' ':
+    elif BOARD[0] == BOARD[4] == BOARD[8] != ' ':
         WINNER = BOARD[0]
         return True
-    if BOARD[2] == BOARD[4] == BOARD[6] != ' ':
+    elif BOARD[2] == BOARD[4] == BOARD[6] != ' ':
         WINNER = BOARD[2]
         return True
-    return False
+    else:
+        return False
 
 
 def check_if_tie():
