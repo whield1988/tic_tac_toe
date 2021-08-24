@@ -15,7 +15,7 @@ def display_board():
 
 def handle_turn():
     """Ask for player's input and place the mark on the board"""
-    print(CURRENT_PLAYER + "'s turn!")
+    print(CURRENT_PLAYER + "'s turn.")
     position = input("Choose a number from 1-9: ")
 
     position_valid = False
@@ -38,33 +38,24 @@ def handle_turn():
 
 def check_if_win():
     """Check if there is a win"""
-    global WINNER
     # Check rows
     if BOARD[0] == BOARD[1] == BOARD[2] != ' ':
-        WINNER = BOARD[0]
         return True
     elif BOARD[3] == BOARD[4] == BOARD[5] != ' ':
-        WINNER = BOARD[3]
         return True
     elif BOARD[6] == BOARD[7] == BOARD[8] != ' ':
-        WINNER = BOARD[6]
         return True
     # Check columns
     elif BOARD[0] == BOARD[3] == BOARD[6] != ' ':
-        WINNER = BOARD[0]
         return True
     elif BOARD[1] == BOARD[4] == BOARD[7] != ' ':
-        WINNER = BOARD[1]
         return True
     elif BOARD[2] == BOARD[5] == BOARD[8] != ' ':
-        WINNER = BOARD[2]
         return True
     # Check diagonals
     elif BOARD[0] == BOARD[4] == BOARD[8] != ' ':
-        WINNER = BOARD[0]
         return True
     elif BOARD[2] == BOARD[4] == BOARD[6] != ' ':
-        WINNER = BOARD[2]
         return True
     else:
         return False
@@ -95,22 +86,18 @@ if __name__ == "__main__":
 
     CURRENT_PLAYER = "X"
 
-    GAME_ON = True
-
-    WINNER = " "
-
     display_board()
 
-    while GAME_ON:
+    game_on = True
+
+    while game_on:
         handle_turn()
 
         if check_if_win():
-            GAME_ON = False
-            print(WINNER + " won.")
-
+            game_on = False
+            print(CURRENT_PLAYER + " won!")
         elif check_if_tie():
-            GAME_ON = False
-            print("Tie.")
-
+            game_on = False
+            print("Tie!")
         else:
             flip_player()
