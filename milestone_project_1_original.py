@@ -15,25 +15,23 @@ def display_board():
 
 def handle_turn():
     """Ask for player's input and place the mark on the board"""
-    print(CURRENT_PLAYER + "'s turn.")
-    position = input("Choose a number from 1-9: ")
-
-    position_valid = False
-
-    while not position_valid:
-        while position not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
-            position = input("Choose a number from 1-9: ")
-
-        position = int(position) - 1
-
-        if BOARD[position] == ' ':
-            position_valid = True
+    while True:
+        try:
+            print(CURRENT_PLAYER + "'s turn.")
+            position = int(input("Choose a number from 1-9: "))
+            if int(position) > 9:
+                raise Exception("Please enter a number from 1-9 only.")
+            elif BOARD[position] != ' ':
+                raise Exception("Please enter a number in an empty space only.")
+        except ValueError:
+            print("Please enter numbers only.")
+        except Exception as e:
+            print(e)
         else:
-            print("Position taken! Please choose another number.")
-
-    BOARD[position] = CURRENT_PLAYER
-
-    display_board()
+            position = int(position) - 1
+            BOARD[position] = CURRENT_PLAYER
+            display_board()
+            break
 
 
 def check_if_win():
