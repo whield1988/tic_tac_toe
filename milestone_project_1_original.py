@@ -19,17 +19,17 @@ def handle_turn():
         try:
             print(CURRENT_PLAYER + "'s turn.")
             position = int(input("Choose a number from 1-9: "))
-            if int(position) > 9:
+            index = int(position) - 1
+            if 0 > int(index) <= 8:
                 raise Exception("Please enter a number from 1-9 only.")
-            elif BOARD[position] != ' ':
+            elif BOARD[index] != ' ':
                 raise Exception("Please enter a number in an empty space only.")
         except ValueError:
             print("Please enter numbers only.")
         except Exception as e:
             print(e)
         else:
-            position = int(position) - 1
-            BOARD[position] = CURRENT_PLAYER
+            BOARD[index] = CURRENT_PLAYER
             display_board()
             break
 
